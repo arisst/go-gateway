@@ -1,0 +1,11 @@
+version: '3'
+services:
+    app:
+        container_name: go-gateway
+        image: golang:1.15
+        working_dir: "/data"
+        ports:
+            - "8001:8001"
+        volumes:
+            - ./:/data
+        command: sh -c "go run main.go"
