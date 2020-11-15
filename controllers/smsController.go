@@ -39,6 +39,11 @@ func SendSMS(w http.ResponseWriter, r *http.Request) {
 	phone := url.QueryEscape(query.Get("phone"))
 	text := url.QueryEscape(query.Get("text"))
 
+	if phone == "" || text == "" {
+		u.Respond(w, u.Message(false, "Phone or text is required!"))
+		return
+	}
+
 	vendor := getVendor("vendor.toml")
 
 	if vendor == nil {
